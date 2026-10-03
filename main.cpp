@@ -17,7 +17,10 @@ int main() {
     int selected = 0;
 
     auto menu = Menu(&menu_items, &selected);
-    
+    auto menu_renderer = Renderer(menu, [&]{
+        return menu->Render() | size(HEIGHT, EQUAL, 4) | size(WIDTH, EQUAL, 30) | border | center;
+    });
+
     auto screen = App::Fullscreen();
-    screen.Loop(menu);
+    screen.Loop(menu_renderer);
 }
