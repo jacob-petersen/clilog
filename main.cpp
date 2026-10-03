@@ -29,6 +29,16 @@ int main() {
     phone_number_options.multiline = false;
     Component input_phone_number = Input(&phone_number, "phone number", phone_number_options);
 
+    // We want to limit the phone number input to only numerical characters. We use a CatchEvent
+    // Make sure the event is a numerical character
+    input_phone_number |= CatchEvent([&](Event event) {
+        return event.is_character() && !std::isdigit(event.character()[0]);
+    });
+    // Make sure the phone number field is no longer than 10 characters (digits)
+    input_phone_number |= CatchEvent([&](Event event) {
+        return event.is_character() && phone_number.size() >= 10;
+    });
+
     // Component tree that logically lays out these things vertically (for tab navigation etc)
     auto component_tree = Container::Vertical({
         input_first_name,
