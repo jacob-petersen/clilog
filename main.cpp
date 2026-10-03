@@ -19,10 +19,22 @@ int main() {
     Component input_first_name = Input(&first_name, "first name");
     Component input_last_name = Input(&last_name, "last name");
 
+    // Password input, need to specify to obscure input
+    InputOption password_options;
+    password_options.password = true;
+    Component input_password = Input(&password, "password", password_options);
+
+    // Phone number input
+    InputOption phone_number_options;
+    phone_number_options.multiline = false;
+    Component input_phone_number = Input(&phone_number, "phone number", phone_number_options);
+
     // Component tree that logically lays out these things vertically (for tab navigation etc)
     auto component_tree = Container::Vertical({
         input_first_name,
-        input_last_name
+        input_last_name,
+        input_password,
+        input_phone_number
     });
 
     auto screen = App::TerminalOutput();
