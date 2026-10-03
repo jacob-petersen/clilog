@@ -16,11 +16,20 @@ int main() {
     };
     int selected = 0;
 
+    auto header = hbox(
+        text("clilog v0.1"),
+        filler(),
+        text("XXXX-XX-XX 00:00:00 UTC")
+    ) | size(HEIGHT, EQUAL, 1) | inverted;
+
     auto menu = Menu(&menu_items, &selected);
-    auto menu_renderer = Renderer(menu, [&]{
-        return menu->Render() | size(HEIGHT, EQUAL, 4) | size(WIDTH, EQUAL, 30) | border | center;
+    auto main_renderer = Renderer(menu, [&] {
+        return vbox(
+            header,
+            menu->Render() | size(HEIGHT, EQUAL, 4) | size(WIDTH, EQUAL, 30) | border | center | flex
+        );
     });
 
     auto screen = App::Fullscreen();
-    screen.Loop(menu_renderer);
+    screen.Loop(main_renderer);
 }
