@@ -4,6 +4,7 @@
 
 #include "ftxui/component/app.hpp"
 #include "ftxui/component/component.hpp"
+#include "ftxui/dom/elements.hpp"
 
 int main() {
     
@@ -47,7 +48,20 @@ int main() {
         input_phone_number
     });
 
+    auto tree_renderer = Renderer(component_tree, [&]{
+        return vbox({
+            hbox(text("First name: "), input_first_name->Render()),
+            hbox(text("Last name: "), input_last_name->Render()),
+            hbox(text("Password: "), input_password->Render()),
+            hbox(text("Phone number: "), input_phone_number->Render()),
+            separator(),
+            text("Hello " + first_name + " " + last_name),
+            text("Your password is " + password),
+            text("Your phone number is " + phone_number)
+        }) | border;
+    });
+
     auto screen = App::TerminalOutput();
-    screen.Loop(component_tree);
+    screen.Loop(tree_renderer);
 
 }
