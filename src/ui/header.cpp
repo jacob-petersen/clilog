@@ -10,13 +10,16 @@
 
 #include "ftxui/component/component.hpp"
 
+#include "clilog/timeutils.hpp"
+
 ftxui::Element clilog::generate_header() {
     using namespace ftxui;
 
     auto header = hbox(
         text(" clilog v0.1"),
         filler(),
-        text("2026-01-01 00:00:00 UTC ")
+        // text("2026-01-01 00:00:00 UTC ")
+        text(clilog::timeutils::get_utc_datetime() + " ")
     ) | inverted;
     return header;   
 }
