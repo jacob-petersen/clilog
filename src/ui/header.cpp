@@ -6,11 +6,11 @@
 
 */
 
+#include "clilog/ui/header.hpp"
+
 #include "ftxui/component/component.hpp"
 
-namespace clilog {
-
-ftxui::Element generate_header() {
+ftxui::Element clilog::generate_header() {
     using namespace ftxui;
 
     auto header = hbox(
@@ -19,6 +19,4 @@ ftxui::Element generate_header() {
         text("2026-01-01 00:00:00 UTC ")
     ) | inverted;
     return header;   
-}
-
 }

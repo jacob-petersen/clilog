@@ -4,7 +4,7 @@
 #include "ftxui/component/app.hpp"
 #include "ftxui/component/component.hpp"
 
-#include "ui/main_menu.hpp"
+#include "clilog/ui/main_menu.hpp"
 
 int main() {
 

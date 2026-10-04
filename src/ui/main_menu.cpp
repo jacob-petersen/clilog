@@ -2,22 +2,21 @@
     Keep it simple, stupid.
 */
 
+#include "clilog/ui/main_menu.hpp"
+
 #include <string>
 #include <vector>
 
 #include "ftxui/component/component.hpp"
 
-#include "ui/main_menu.hpp"
-#include "ui/header.hpp"
+#include "clilog/ui/header.hpp"
 
-namespace clilog {
-
-ftxui::Element generate_ascii_title();
+ftxui::Element clilog::generate_ascii_title();
 
 /*
     Initialize menu_ and add it as a child of this component
 */
-MainMenu::MainMenu() {
+clilog::MainMenu::MainMenu() {
     using namespace ftxui;
 
     menu_ = Menu(&entries_, &selected_);
@@ -28,7 +27,7 @@ MainMenu::MainMenu() {
 /*
     Render the entire main menu screen
 */
-ftxui::Element MainMenu::OnRender() {
+ftxui::Element clilog::MainMenu::OnRender() {
     using namespace ftxui;
     return vbox(
         clilog::generate_header(),
@@ -42,7 +41,7 @@ ftxui::Element MainMenu::OnRender() {
     );
 }
 
-ftxui::Element generate_ascii_title() {
+ftxui::Element clilog::generate_ascii_title() {
     using namespace ftxui;
 
     auto ascii_banner = vbox(
@@ -51,6 +50,4 @@ ftxui::Element generate_ascii_title() {
     );
 
     return ascii_banner;
-}
-
 }
