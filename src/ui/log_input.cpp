@@ -38,42 +38,42 @@ ftxui::Element clilog::LogInput::OnRender() {
         hbox({
             text("UTC Date"),
             separator(),
-            input_utc_date_->Render()
+            input_utc_date_->Render() | inverted
         }) | border,
         hbox({
             text("UTC Time"),
             separator(),
-            input_utc_time_->Render()
+            input_utc_time_->Render() | inverted
         }) | border,
         hbox({
             text("Call"),
             separator(),
-            input_call_->Render()
+            input_call_->Render() | inverted
         }) | border,
         hbox({
             text("Freq"),
             separator(),
-            input_freq_->Render()
+            input_freq_->Render() | inverted
         }) | border,
         hbox({
             text("Mode"),
             separator(),
-            input_mode_->Render()
+            input_mode_->Render() | inverted
         }) | border,
         hbox({
             text("RST Sent"),
             separator(),
-            input_rst_sent_->Render()
+            input_rst_sent_->Render() | inverted
         }) | border,
         hbox({
             text("RST Rcvd"),
             separator(),
-            input_rst_rcvd_->Render()
+            input_rst_rcvd_->Render() | inverted
         }) | border,
         hbox({
             text("Comment"),
             separator(),
-            input_comment_->Render()
+            input_comment_->Render() | inverted
         }) | border
     }) | size(HEIGHT, EQUAL, 1);
 
