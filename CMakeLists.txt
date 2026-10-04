@@ -19,6 +19,7 @@ add_executable(clilog
     src/main.cpp
     src/timeutils.cpp
     src/ui/header.cpp
+    src/ui/log_input.cpp
     src/ui/main_menu.cpp
 )
 
