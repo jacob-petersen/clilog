@@ -16,7 +16,13 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(ftxui)
 
 add_executable(clilog
-    main.cpp
+    src/main.cpp
+    src/ui/header.cpp
+    src/ui/main_menu.cpp
+)
+
+target_include_directories(clilog PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/inc
 )
 
 target_link_libraries(clilog PRIVATE
