@@ -18,6 +18,7 @@ FetchContent_MakeAvailable(ftxui)
 add_executable(clilog
     src/main.cpp
     src/ui/header.cpp
+    src/ui/main_menu.cpp
 )
 
 target_include_directories(clilog PRIVATE
