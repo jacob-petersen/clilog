@@ -1,5 +1,9 @@
 /*
     Keep it simple, stupid.
+
+    NOTHING IN THIS FILE SHOULD EVER BE USED DIRECTLY IN MAIN!
+    Build the screen you want this menu on first, then use that.
+
 */
 
 #pragma once
