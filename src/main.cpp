@@ -7,6 +7,7 @@
 #include "ftxui/component/component.hpp"
 
 #include "clilog/ui/main_menu.hpp"
+#include "clilog/ui/log_input.hpp"
 
 int main() {
 
@@ -16,6 +17,7 @@ int main() {
     bool running = true;
 
     auto main_menu = ftxui::Make<clilog::MainMenu>();
+    auto log_input_test = ftxui::Make<clilog::LogInput>();
     auto screen = App::Fullscreen();
 
     // Thread that forces a redraw every second
@@ -26,7 +28,7 @@ int main() {
         }
     });
 
-    screen.Loop(main_menu);
+    screen.Loop(log_input_test);
     
     // When screen.Loop exits, the program is shutting down
     running = false;
