@@ -23,8 +23,16 @@ ftxui::Element clilog::LoggingScreen::OnRender() {
     using namespace ftxui;
     return vbox({
         clilog::generate_header(),
-        log_input_->Render(),
+        hbox({
+            text(" "),
+            log_input_->Render(),
+            text(" ")    
+        }),
         separator(),
-        log_history_->Render()
+        hbox({
+            text(" "),
+            log_history_->Render(),
+            text(" ")
+        })
     });
 }

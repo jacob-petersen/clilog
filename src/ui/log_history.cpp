@@ -17,26 +17,18 @@ clilog::LogHistoryTable::LogHistoryTable() {
 ftxui::Element clilog::LogHistoryTable::OnRender() {
     using namespace ftxui;
     auto sample_data = DEBUG_generate_sample_data(10);
-    // std::string s;
-
-    // for (std::vector<std::string> row: sample_data) {
-    //     for (std::string col: row) {
-    //         s += col + " ";
-    //     }
-    //     s += "\n";
-    // }
-
-    // return paragraph(s);
 
     auto table = Table(sample_data);
-    // table.SelectAll().SeparatorVertical(LIGHT);
+    table.SelectAll().SeparatorVertical(LIGHT);
+    table.SelectRow(0).Border();
+    table.SelectRow(0).DecorateCells(bold);
     return table.Render();
 
 }
 
 std::vector<std::vector<std::string>> clilog::LogHistoryTable::DEBUG_generate_sample_data(int n) {
 
-    std::vector<std::vector<std::string>> data = {{"UTC Date", "UTC Time", "Call", "Freq", "Mode", "RST Sent", "RST Rcvd", "Comment"}};
+    std::vector<std::vector<std::string>> data = {{"UTC Date   ", "UTC Time ", "Call   ", "Freq     ", "Mode ", "RST Sent ", "RST Rcvd ", "Comment "}};
 
     for (int i = 0; i < n; i++) {
         std::vector<std::string> row;    
