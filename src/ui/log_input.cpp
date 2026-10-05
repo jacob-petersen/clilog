@@ -79,6 +79,6 @@ ftxui::Element clilog::LogInput::OnRender() {
             separator(),
             input_comment_->Render() | size(WIDTH, EQUAL, 11) | underlined
         }) | border
-    }) | size(HEIGHT, EQUAL, 1);
+    }) | size(HEIGHT, EQUAL, 3);
 
 }

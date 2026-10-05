@@ -4,6 +4,8 @@
     NOTHING IN THIS FILE SHOULD EVER BE USED DIRECTLY IN MAIN!
     Build the screen you want this menu on first, then use that.
 
+    This header defines clilog::LogInput, which is the log data entry form that is used in the main logging screen.
+
 */
 
 #pragma once

@@ -1,3 +1,7 @@
+/*
+    Keep it simple, stupid.
+*/
+
 #include <string>
 #include <vector>
 #include <thread>
@@ -8,6 +12,7 @@
 
 #include "clilog/ui/main_menu.hpp"
 #include "clilog/ui/log_input.hpp"
+#include "clilog/ui/logging_screen.hpp"
 
 int main() {
 
@@ -18,6 +23,7 @@ int main() {
 
     auto main_menu = ftxui::Make<clilog::MainMenu>();
     auto log_input_test = ftxui::Make<clilog::LogInput>();
+    auto logging_screen = ftxui::Make<clilog::LoggingScreen>();
     auto screen = App::Fullscreen();
 
     // Thread that forces a redraw every second
@@ -28,7 +34,7 @@ int main() {
         }
     });
 
-    screen.Loop(log_input_test);
+    screen.Loop(logging_screen);
     
     // When screen.Loop exits, the program is shutting down
     running = false;
