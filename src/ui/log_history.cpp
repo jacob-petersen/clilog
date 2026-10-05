@@ -63,6 +63,25 @@ std::vector<std::vector<std::string>> clilog::LogHistoryTable::DEBUG_generate_sa
         s = std::format("{}", 1000 * (14000 + rand() % (14350 - 14000 + 1)));
         row.push_back(s);
 
+        // Generate a random mode
+        std::vector<std::string> modes = {"SSB", "CW", "FT8", "RTTY", "WSPR"};
+        row.push_back(modes[rand() % (modes.size() - 1)]);
+
+        // Generate a random RST Sent
+        row.push_back(std::format("{}", 11 + rand() % (59 - 11 + 1)));
+
+        // Generate a random RST Rcvd
+        row.push_back(std::format("{}", 11 + rand() % (59 - 11 + 1)));
+        
+        // Generate a random comment
+        const char alphabet2[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
+        len = 20 + rand() % (100 - 20 + 1);
+        s = "";
+        for (int i = 0; i < len; i++) {
+            s += alphabet2[rand() % (sizeof(alphabet2) - 1)];
+        }
+        row.push_back(s);
+
         data.push_back(row);
     }
 
