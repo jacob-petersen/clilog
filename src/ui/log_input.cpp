@@ -3,6 +3,7 @@
 */
 
 #include "clilog/ui/log_input.hpp"
+#include "clilog/timeutils.hpp"
 
 clilog::LogInput::LogInput() {
     using namespace ftxui;
@@ -33,6 +34,9 @@ clilog::LogInput::LogInput() {
 
 ftxui::Element clilog::LogInput::OnRender() {
     using namespace ftxui;
+
+    utc_date_ = clilog::timeutils::get_utc_date();
+    utc_time_ = clilog::timeutils::get_utc_time();
 
     return hbox({
         hbox({
