@@ -6,6 +6,7 @@
 #include <format>
 
 #include "ftxui/component/component.hpp"
+#include "ftxui/dom/table.hpp"
 
 #include "clilog/ui/log_history.hpp"
 
@@ -15,22 +16,27 @@ clilog::LogHistoryTable::LogHistoryTable() {
 
 ftxui::Element clilog::LogHistoryTable::OnRender() {
     using namespace ftxui;
-    std::vector<std::vector<std::string>> sample_data = DEBUG_generate_sample_data(10);
-    std::string s;
+    auto sample_data = DEBUG_generate_sample_data(10);
+    // std::string s;
 
-    for (std::vector<std::string> row: sample_data) {
-        for (std::string col: row) {
-            s += col + " ";
-        }
-        s += "\n";
-    }
+    // for (std::vector<std::string> row: sample_data) {
+    //     for (std::string col: row) {
+    //         s += col + " ";
+    //     }
+    //     s += "\n";
+    // }
 
-    return paragraph(s);
+    // return paragraph(s);
+
+    auto table = Table(sample_data);
+    // table.SelectAll().SeparatorVertical(LIGHT);
+    return table.Render();
+
 }
 
 std::vector<std::vector<std::string>> clilog::LogHistoryTable::DEBUG_generate_sample_data(int n) {
 
-    std::vector<std::vector<std::string>> data;
+    std::vector<std::vector<std::string>> data = {{"UTC Date", "UTC Time", "Call", "Freq", "Mode", "RST Sent", "RST Rcvd", "Comment"}};
 
     for (int i = 0; i < n; i++) {
         std::vector<std::string> row;    
