@@ -51,7 +51,7 @@ void clilog::LogStore::DEBUG_generate_sample_log_entries(int n) {
 
         // Generate a random mode
         std::vector<std::string> modes = {"SSB", "CW", "FT8", "RTTY", "WSPR"};
-        entry.freq = modes[rand() % (modes.size() - 1)];
+        entry.mode = modes[rand() % (modes.size() - 1)];
 
         // Generate a random RST Sent
         entry.rst_sent = std::format("{}", 11 + rand() % (59 - 11 + 1));
