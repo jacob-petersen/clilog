@@ -38,47 +38,50 @@ ftxui::Element clilog::LogInput::OnRender() {
     utc_date_ = clilog::timeutils::get_utc_date();
     utc_time_ = clilog::timeutils::get_utc_time();
 
-    return hbox({
-        hbox({
-            text("UTC Date"),
-            separator(),
-            input_utc_date_->Render() | size(WIDTH, EQUAL, 11) | underlined
-        }) | border,
-        hbox({
-            text("UTC Time"),
-            separator(),
-            input_utc_time_->Render() | size(WIDTH, EQUAL, 9) | underlined
-        }) | border,
-        hbox({
-            text("Call"),
-            separator(),
-            input_call_->Render() | size(WIDTH, EQUAL, 11) | underlined
-        }) | border,
-        hbox({
-            text("Freq"),
-            separator(),
-            input_freq_->Render() | size(WIDTH, EQUAL, 11) | underlined
-        }) | border,
-        hbox({
-            text("Mode"),
-            separator(),
-            input_mode_->Render() | size(WIDTH, EQUAL, 9) | underlined
-        }) | border,
-        hbox({
-            text("RST Sent"),
-            separator(),
-            input_rst_sent_->Render() | size(WIDTH, EQUAL, 9) | underlined
-        }) | border,
-        hbox({
-            text("RST Rcvd"),
-            separator(),
-            input_rst_rcvd_->Render() | size(WIDTH, EQUAL, 9) | underlined
-        }) | border,
-        hbox({
-            text("Comment"),
-            separator(),
-            input_comment_->Render() | size(WIDTH, EQUAL, 11) | underlined
-        }) | border
-    }) | size(HEIGHT, EQUAL, 1);
+    return 
+        vbox({
+            hbox({
+                hbox({
+                    text("UTC Date"),
+                    separator(),
+                    input_utc_date_->Render() | size(WIDTH, EQUAL, 11) | underlined
+                }) | border,
+                hbox({
+                    text("UTC Time"),
+                    separator(),
+                    input_utc_time_->Render() | size(WIDTH, EQUAL, 9) | underlined
+                }) | border,
+                hbox({
+                    text("Call"),
+                    separator(),
+                    input_call_->Render() | size(WIDTH, EQUAL, 11) | underlined
+                }) | border,
+                hbox({
+                    text("Freq"),
+                    separator(),
+                    input_freq_->Render() | size(WIDTH, EQUAL, 11) | underlined
+                }) | border,
+                hbox({
+                    text("Mode"),
+                    separator(),
+                    input_mode_->Render() | size(WIDTH, EQUAL, 9) | underlined
+                }) | border,
+                hbox({
+                    text("RST Sent"),
+                    separator(),
+                    input_rst_sent_->Render() | size(WIDTH, EQUAL, 9) | underlined
+                }) | border,
+                hbox({
+                    text("RST Rcvd"),
+                    separator(),
+                    input_rst_rcvd_->Render() | size(WIDTH, EQUAL, 9) | underlined
+                }) | border
+            }) | size(HEIGHT, EQUAL, 3),
+            hbox({
+                text("Comment"),
+                separator(),
+                input_comment_->Render() | size(WIDTH, GREATER_THAN, 10) | flex | underlined
+            }) | border
+        });
 
 }
