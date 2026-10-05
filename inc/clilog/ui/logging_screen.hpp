@@ -13,6 +13,7 @@ class LoggingScreen : public ftxui::ComponentBase {
     private:
     ftxui::Component log_input_;
     ftxui::Component log_history_;
+    ftxui::Component container_;
 
     public:
     LoggingScreen();

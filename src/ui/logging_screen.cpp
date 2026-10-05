@@ -17,12 +17,19 @@ clilog::LoggingScreen::LoggingScreen() {
 
     log_input_ = ftxui::Make<clilog::LogInput>();
     log_history_ = ftxui::Make<clilog::LogHistoryTable>();
+
+    container_ = Container::Vertical({
+        log_input_, log_history_
+    });
+
+    Add(container_);
 }
 
 ftxui::Element clilog::LoggingScreen::OnRender() {
     using namespace ftxui;
     return vbox({
         clilog::generate_header(),
+        text(" "),
         hbox({
             text(" "),
             log_input_->Render(),
