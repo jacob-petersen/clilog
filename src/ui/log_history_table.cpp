@@ -8,7 +8,7 @@
 #include "ftxui/component/component.hpp"
 #include "ftxui/dom/table.hpp"
 
-#include "clilog/ui/log_history.hpp"
+#include "clilog/ui/log_history_table.hpp"
 #include "clilog/log_store.hpp"
 
 clilog::LogHistoryTable::LogHistoryTable(clilog::LogStore& log_store)

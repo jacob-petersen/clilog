@@ -7,7 +7,7 @@
 
 */
 
-#include "clilog/ui/log_history.hpp"
+#include "clilog/ui/log_history_table.hpp"
 #include "clilog/ui/log_input.hpp"
 #include "clilog/ui/logging_screen.hpp"
 #include "clilog/ui/header.hpp"
