@@ -14,11 +14,15 @@
 
 #include "ftxui/component/component.hpp"
 
+#include "clilog/log_store.hpp"
+
 namespace clilog {
 
 class LogInput : public ftxui::ComponentBase {
 
     private:
+    clilog::LogStore& log_store_;
+
     std::string utc_date_;
     std::string utc_time_;
     std::string call_;
@@ -40,7 +44,7 @@ class LogInput : public ftxui::ComponentBase {
     ftxui::Component container_;
 
     public:
-    LogInput();
+    LogInput(clilog::LogStore& log_store);
     ftxui::Element OnRender() override;
 };
 

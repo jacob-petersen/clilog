@@ -15,7 +15,7 @@
 clilog::LoggingScreen::LoggingScreen(clilog::LogStore& log_store) {
     using namespace ftxui;
 
-    log_input_ = ftxui::Make<clilog::LogInput>();
+    log_input_ = ftxui::Make<clilog::LogInput>(log_store);
     log_history_ = ftxui::Make<clilog::LogHistoryTable>(log_store);
 
     container_ = Container::Vertical({
