@@ -8,6 +8,10 @@
 
 #include "clilog/log_store.hpp"
 
+void clilog::LogStore::add_log_entry(clilog::LogEntry log_entry) {
+    log_entry_buffer_.push_back(log_entry);
+}
+
 std::vector<clilog::LogEntry>& clilog::LogStore::DEBUG_dump_entire_buffer() {
     return log_entry_buffer_;
 }
