@@ -7,20 +7,24 @@
 
 */
 
-#include "clilog/ui/logging_screen.hpp"
+#include "clilog/ui/log_history.hpp"
 #include "clilog/ui/log_input.hpp"
+#include "clilog/ui/logging_screen.hpp"
 #include "clilog/ui/header.hpp"
 
 clilog::LoggingScreen::LoggingScreen() {
     using namespace ftxui;
 
     log_input_ = ftxui::Make<clilog::LogInput>();
+    log_history_ = ftxui::Make<clilog::LogHistoryTable>();
 }
 
 ftxui::Element clilog::LoggingScreen::OnRender() {
     using namespace ftxui;
     return vbox({
         clilog::generate_header(),
-        log_input_->Render()
+        log_input_->Render(),
+        separator(),
+        log_history_->Render()
     });
 }
