@@ -16,6 +16,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(ftxui)
 
 add_executable(clilog
+    src/log_store.cpp
     src/main.cpp
     src/timeutils.cpp
     src/ui/header.cpp

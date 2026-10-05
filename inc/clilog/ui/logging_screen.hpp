@@ -16,7 +16,7 @@ class LoggingScreen : public ftxui::ComponentBase {
     ftxui::Component container_;
 
     public:
-    LoggingScreen();
+    LoggingScreen(clilog::LogStore& log_store);
     ftxui::Element OnRender() override;
 
 };

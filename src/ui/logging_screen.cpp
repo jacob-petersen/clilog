@@ -12,14 +12,15 @@
 #include "clilog/ui/logging_screen.hpp"
 #include "clilog/ui/header.hpp"
 
-clilog::LoggingScreen::LoggingScreen() {
+clilog::LoggingScreen::LoggingScreen(clilog::LogStore& log_store) {
     using namespace ftxui;
 
     log_input_ = ftxui::Make<clilog::LogInput>();
-    log_history_ = ftxui::Make<clilog::LogHistoryTable>();
+    log_history_ = ftxui::Make<clilog::LogHistoryTable>(log_store);
 
     container_ = Container::Vertical({
-        log_input_, log_history_
+        log_input_, 
+        log_history_
     });
 
     Add(container_);
