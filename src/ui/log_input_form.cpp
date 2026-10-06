@@ -23,6 +23,39 @@ clilog::LogInputForm::LogInputForm(clilog::LogStore& log_store)
     input_rst_rcvd_ = Input(&rst_rcvd_);
     input_comment_ = Input(&comment_);
 
+    // Call field input validator
+    input_call_ |= CatchEvent([&] (Event event) {
+        if (!event.is_character()) return false;
+
+        // Allowed inputs: A-Z, 0-9, /, -
+        if ( 
+            (event.character()[0] >= 65 && event.character()[0] <= 90) ||
+            (event.character()[0] >= 48 && event.character()[0] <= 57) ||
+            event.character()[0] == 45 || event.character()[0] == 47
+        ) {
+            // Return false because these characters are OK, we don't need to intercept them
+            return false;
+        } else if (event.is_character() && event.character()[0] >= 97 && event.character()[0] <= 122) {
+            // Call the input's OnEvent() with the modified character
+            return input_call_->OnEvent(Event::Character((char)(event.character()[0] - 32)));
+        }
+
+        return true;
+        
+    });
+
+    // Freq field input validator
+    input_freq_ |= CatchEvent([&] (Event event) {
+        if (!event.is_character()) return false;
+
+        // Allowed inputs: 0-9, .
+        if ( (event.character()[0] >= 48 && event.character()[0] <= 57) || event.character()[0] == 46 ) {
+            return false;
+        }
+
+        return true;
+    });
+
     container_ = Container::Horizontal({
         input_utc_date_,
         input_utc_time_,
