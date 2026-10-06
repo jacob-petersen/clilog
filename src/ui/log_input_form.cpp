@@ -85,8 +85,8 @@ clilog::LogInputForm::LogInputForm(clilog::LogStore& log_store)
             utc_date_ = "";
             utc_time_ = "";
             call_ = "";
-            freq_ = "";
-            mode_ = "";
+            // freq_ = "";
+            // mode_ = "";
             rst_sent_ = "";
             rst_rcvd_ = "";
             comment_ = "";
