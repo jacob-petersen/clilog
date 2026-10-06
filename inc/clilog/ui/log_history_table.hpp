@@ -1,5 +1,9 @@
 /*
     Keep it simple, stupid.
+
+    This header defines the LogHistoryTable, which is the UI component that renders the log history.
+    Currently non-focusable, but this will change in the future.
+
 */
 #pragma once
 
