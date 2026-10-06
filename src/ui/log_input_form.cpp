@@ -14,8 +14,13 @@ clilog::LogInputForm::LogInputForm(clilog::LogStore& log_store)
 {
     using namespace ftxui;
     
-    input_utc_date_ = Input(&utc_date_);
-    input_utc_time_ = Input(&utc_time_);
+    input_utc_year_ = Input(&utc_year_);
+    input_utc_month_ = Input(&utc_month_);
+    input_utc_day_ = Input(&utc_day_);
+    input_utc_hour_ = Input(&utc_hour_);
+    input_utc_minute_ = Input(&utc_minute_);
+    input_utc_second_ = Input(&utc_second_);
+
     input_call_ = Input(&call_);
     input_freq_ = Input(&freq_);
     input_mode_ = Input(&mode_);
@@ -57,8 +62,12 @@ clilog::LogInputForm::LogInputForm(clilog::LogStore& log_store)
     });
 
     container_ = Container::Horizontal({
-        input_utc_date_,
-        input_utc_time_,
+        input_utc_year_,
+        input_utc_month_,
+        input_utc_day_,
+        input_utc_hour_,
+        input_utc_minute_,
+        input_utc_second_,
         input_call_,
         input_freq_,
         input_mode_,
@@ -71,8 +80,8 @@ clilog::LogInputForm::LogInputForm(clilog::LogStore& log_store)
     container_ |= CatchEvent([&] (Event event) {
         if (event == Event::Return) {
             clilog::LogEntry log_entry {
-                .utc_date = utc_date_,
-                .utc_time = utc_time_,
+                .utc_date = std::format("{}-{}-{}", utc_year_, utc_month_, utc_day_),
+                .utc_time = std::format("{}:{}:{}", utc_hour_, utc_minute_, utc_second_),
                 .call = call_,
                 .freq = freq_,
                 .mode = mode_,
@@ -82,8 +91,8 @@ clilog::LogInputForm::LogInputForm(clilog::LogStore& log_store)
             };
             log_store_.add_log_entry(log_entry);
 
-            utc_date_ = "";
-            utc_time_ = "";
+            utc_year_, utc_month_, utc_day_ = "";
+            utc_hour_, utc_minute_, utc_second_ = "";
             call_ = "";
             // freq_ = "";
             // mode_ = "";
@@ -105,8 +114,13 @@ ftxui::Element clilog::LogInputForm::OnRender() {
     using namespace ftxui;
 
     auto now = clilog::timeutils::get_utc_time();
-    utc_date_ = std::format("{:04}-{:02}-{:02}", now.year, now.month, now.day);
-    utc_time_ = std::format("{:02}:{:02}:{:02}", now.hour, now.minute, now.second);
+
+    utc_year_ = std::format("{:04}", now.year);
+    utc_month_ = std::format("{:02}", now.month);
+    utc_day_ = std::format("{:02}", now.day);
+    utc_hour_ = std::format("{:02}", now.hour);
+    utc_minute_ = std::format("{:02}", now.minute);
+    utc_second_ = std::format("{:02}", now.second);
 
     return 
         vbox({
@@ -114,12 +128,24 @@ ftxui::Element clilog::LogInputForm::OnRender() {
                 hbox({
                     text("UTC Date"),
                     separator(),
-                    input_utc_date_->Render() | size(WIDTH, EQUAL, 11) | underlined
+                    hbox(
+                        input_utc_year_->Render() | size(WIDTH, EQUAL, 4) | underlined,
+                        text("-"),
+                        input_utc_month_->Render() | size(WIDTH, EQUAL, 2) | underlined,
+                        text("-"),
+                        input_utc_day_->Render() | size(WIDTH, EQUAL, 2) | underlined
+                    )
                 }) | border,
                 hbox({
                     text("UTC Time"),
                     separator(),
-                    input_utc_time_->Render() | size(WIDTH, EQUAL, 9) | underlined
+                    hbox(
+                        input_utc_hour_->Render() | size(WIDTH, EQUAL, 2) | underlined,
+                        text(":"),
+                        input_utc_minute_->Render() | size(WIDTH, EQUAL, 2) | underlined,
+                        text(":"),
+                        input_utc_second_->Render() | size(WIDTH, EQUAL, 2) | underlined
+                    )
                 }) | border,
                 hbox({
                     text("Call"),

@@ -22,9 +22,14 @@ class LogInputForm : public ftxui::ComponentBase {
 
     private:
     clilog::LogStore& log_store_;
+    
+    std::string utc_year_;
+    std::string utc_month_;
+    std::string utc_day_;
+    std::string utc_hour_;
+    std::string utc_minute_;
+    std::string utc_second_;
 
-    std::string utc_date_;
-    std::string utc_time_;
     std::string call_;
     std::string freq_;
     std::string mode_;
@@ -32,8 +37,13 @@ class LogInputForm : public ftxui::ComponentBase {
     std::string rst_rcvd_;
     std::string comment_;
 
-    ftxui::Component input_utc_date_;
-    ftxui::Component input_utc_time_;
+    ftxui::Component input_utc_year_;
+    ftxui::Component input_utc_month_;
+    ftxui::Component input_utc_day_;
+    ftxui::Component input_utc_hour_;
+    ftxui::Component input_utc_minute_;
+    ftxui::Component input_utc_second_;
+
     ftxui::Component input_call_;
     ftxui::Component input_freq_;
     ftxui::Component input_mode_;
