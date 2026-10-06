@@ -15,11 +15,11 @@
 clilog::LoggingScreen::LoggingScreen(clilog::LogStore& log_store) {
     using namespace ftxui;
 
-    log_input_ = ftxui::Make<clilog::LogInputForm>(log_store);
+    log_input_form_ = ftxui::Make<clilog::LogInputForm>(log_store);
     log_history_ = ftxui::Make<clilog::LogHistoryTable>(log_store);
 
     container_ = Container::Vertical({
-        log_input_, 
+        log_input_form_, 
         log_history_
     });
 
@@ -33,7 +33,7 @@ ftxui::Element clilog::LoggingScreen::OnRender() {
         text(" "),
         hbox({
             text(" "),
-            log_input_->Render(),
+            log_input_form_->Render(),
             text(" ")    
         }),
         separator(),

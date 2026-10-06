@@ -11,7 +11,7 @@ namespace clilog {
 class LoggingScreen : public ftxui::ComponentBase {
 
     private:
-    ftxui::Component log_input_;
+    ftxui::Component log_input_form_;
     ftxui::Component log_history_;
     ftxui::Component container_;
 
