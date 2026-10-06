@@ -12,7 +12,7 @@
 
 #include "clilog/log_store.hpp"
 #include "clilog/ui/main_menu.hpp"
-#include "clilog/ui/log_input.hpp"
+#include "clilog/ui/log_input_form.hpp"
 #include "clilog/ui/logging_screen.hpp"
 
 int main() {

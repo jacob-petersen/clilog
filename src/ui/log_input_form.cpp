@@ -5,11 +5,11 @@
 #include "ftxui/component/component.hpp"
 #include "ftxui/component/event.hpp"
 
-#include "clilog/ui/log_input.hpp"
+#include "clilog/ui/log_input_form.hpp"
 #include "clilog/timeutils.hpp"
 
 // Need to pass reference immediately so it doesn't get copied
-clilog::LogInput::LogInput(clilog::LogStore& log_store)
+clilog::LogInputForm::LogInputForm(clilog::LogStore& log_store)
     : log_store_(log_store)
 {
     using namespace ftxui;
@@ -68,7 +68,7 @@ clilog::LogInput::LogInput(clilog::LogStore& log_store)
 
 }
 
-ftxui::Element clilog::LogInput::OnRender() {
+ftxui::Element clilog::LogInputForm::OnRender() {
     using namespace ftxui;
 
     utc_date_ = clilog::timeutils::get_utc_date();
