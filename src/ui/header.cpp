@@ -6,6 +6,8 @@
 
 */
 
+#include <format>
+
 #include "clilog/ui/header.hpp"
 
 #include "ftxui/component/component.hpp"
@@ -15,11 +17,13 @@
 ftxui::Element clilog::generate_header() {
     using namespace ftxui;
 
+    auto now = clilog::timeutils::get_utc_time();
+
     auto header = hbox(
         text(" clilog v0.1"),
         filler(),
-        // text("2026-01-01 00:00:00 UTC ")
-        text(clilog::timeutils::get_utc_datetime() + " ")
+        // text(clilog::timeutils::get_utc_datetime_string() + " ")
+        text(std::format("{:04}-{:02}-{:02} {:02}:{:02}:{:02} UTC", now.year, now.month, now.day, now.hour, now.minute, now.second))
     ) | inverted;
     return header;   
 }
