@@ -10,8 +10,9 @@
 #include "ftxui/component/app.hpp"
 #include "ftxui/component/component.hpp"
 
+#include "clilog/log_store.hpp"
 #include "clilog/ui/main_menu.hpp"
-#include "clilog/ui/log_input.hpp"
+#include "clilog/ui/log_input_form.hpp"
 #include "clilog/ui/logging_screen.hpp"
 
 int main() {
@@ -21,9 +22,11 @@ int main() {
     // running bool - used to tell threads to stop
     bool running = true;
 
+    clilog::LogStore log_store;
+    log_store.DEBUG_generate_sample_log_entries(10);
+
     auto main_menu = ftxui::Make<clilog::MainMenu>();
-    auto log_input_test = ftxui::Make<clilog::LogInput>();
-    auto logging_screen = ftxui::Make<clilog::LoggingScreen>();
+    auto logging_screen = ftxui::Make<clilog::LoggingScreen>(log_store);
     auto screen = App::Fullscreen();
 
     // Thread that forces a redraw every second

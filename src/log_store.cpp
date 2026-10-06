@@ -2,36 +2,24 @@
     Keep it simple, stupid.
 */
 
-#include <random>
+#include <string>
 #include <format>
+#include <vector>
 
-#include "ftxui/component/component.hpp"
-#include "ftxui/dom/table.hpp"
+#include "clilog/log_store.hpp"
 
-#include "clilog/ui/log_history.hpp"
-
-clilog::LogHistoryTable::LogHistoryTable() {
-    return;
+void clilog::LogStore::add_log_entry(clilog::LogEntry log_entry) {
+    log_entry_buffer_.push_back(log_entry);
 }
 
-ftxui::Element clilog::LogHistoryTable::OnRender() {
-    using namespace ftxui;
-    auto sample_data = DEBUG_generate_sample_data(10);
-
-    auto table = Table(sample_data);
-    table.SelectAll().SeparatorVertical(LIGHT);
-    table.SelectRow(0).Border();
-    table.SelectRow(0).DecorateCells(bold);
-    return table.Render();
-
+std::vector<clilog::LogEntry>& clilog::LogStore::DEBUG_dump_entire_buffer() {
+    return log_entry_buffer_;
 }
 
-std::vector<std::vector<std::string>> clilog::LogHistoryTable::DEBUG_generate_sample_data(int n) {
-
-    std::vector<std::vector<std::string>> data = {{"UTC Date   ", "UTC Time ", "Call   ", "Freq     ", "Mode ", "RST Sent ", "RST Rcvd ", "Comment "}};
+void clilog::LogStore::DEBUG_generate_sample_log_entries(int n) {
 
     for (int i = 0; i < n; i++) {
-        std::vector<std::string> row;    
+        clilog::LogEntry entry;    
         std::string s;
 
         // Generate random date string
@@ -39,14 +27,14 @@ std::vector<std::vector<std::string>> clilog::LogHistoryTable::DEBUG_generate_sa
         int month = 1 + rand() % (12 - 1 + 1);
         int day = 1 + rand() % (31 - 1 + 1);
         s = std::format("{}-{:02}-{:02}", year, month, day);   
-        row.push_back(s);
+        entry.utc_date = s;
 
         // Generate random time string
         int hour = 0 + rand() % (23 - 0 + 1);
         int minute = 0 + rand() % (59 - 0 + 1);
         int second = 0 + rand() % (59 - 0 + 1);
         s = std::format("{:02}:{:02}:{:02}", hour, minute, second);
-        row.push_back(s);
+        entry.utc_time = s;
 
         // Generate random callsign 
         const char alphabet[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -55,21 +43,21 @@ std::vector<std::vector<std::string>> clilog::LogHistoryTable::DEBUG_generate_sa
         for (int i = 0; i < len; i++) {
             s += alphabet[rand() % sizeof(alphabet) - 1];
         }
-        row.push_back(s);
+        entry.call = s;
 
         // Generate random frequency
         s = std::format("{}", 1000 * (14000 + rand() % (14350 - 14000 + 1)));
-        row.push_back(s);
+        entry.freq = s;
 
         // Generate a random mode
         std::vector<std::string> modes = {"SSB", "CW", "FT8", "RTTY", "WSPR"};
-        row.push_back(modes[rand() % (modes.size() - 1)]);
+        entry.mode = modes[rand() % (modes.size() - 1)];
 
         // Generate a random RST Sent
-        row.push_back(std::format("{}", 11 + rand() % (59 - 11 + 1)));
+        entry.rst_sent = std::format("{}", 11 + rand() % (59 - 11 + 1));
 
         // Generate a random RST Rcvd
-        row.push_back(std::format("{}", 11 + rand() % (59 - 11 + 1)));
+        entry.rst_rcvd = std::format("{}", 11 + rand() % (59 - 11 + 1));
         
         // Generate a random comment
         const char alphabet2[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ";
@@ -78,11 +66,9 @@ std::vector<std::vector<std::string>> clilog::LogHistoryTable::DEBUG_generate_sa
         for (int i = 0; i < len; i++) {
             s += alphabet2[rand() % (sizeof(alphabet2) - 1)];
         }
-        row.push_back(s);
+        entry.comment = s;
 
-        data.push_back(row);
+        log_entry_buffer_.push_back(entry);
     }
-
-    return data;
     
 }

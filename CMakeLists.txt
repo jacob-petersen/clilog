@@ -16,11 +16,12 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(ftxui)
 
 add_executable(clilog
+    src/log_store.cpp
     src/main.cpp
     src/timeutils.cpp
     src/ui/header.cpp
-    src/ui/log_history.cpp
-    src/ui/log_input.cpp
+    src/ui/log_history_table.cpp
+    src/ui/log_input_form.cpp
     src/ui/logging_screen.cpp
     src/ui/main_menu.cpp
 )
