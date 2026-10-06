@@ -100,6 +100,8 @@ clilog::LogInputForm::LogInputForm(clilog::LogStore& log_store)
             rst_rcvd_ = "";
             comment_ = "";
 
+            input_call_->TakeFocus();
+
             return true;
         }
 
@@ -107,6 +109,8 @@ clilog::LogInputForm::LogInputForm(clilog::LogStore& log_store)
     });
 
     Add(container_);
+
+    input_call_->TakeFocus();
 
 }
 
