@@ -37,7 +37,7 @@ clilog::LogInputForm::LogInputForm(clilog::LogStore& log_store)
             return false;
         } else if (event.is_character() && event.character()[0] >= 97 && event.character()[0] <= 122) {
             // Call the input's OnEvent() with the modified character
-            return input_call_->OnEvent(Event::Character((char)(event.character()[0] - 32)));
+            return input_call_->OnEvent(Event::Character(static_cast<char>(event.character()[0] - 32)));
         }
 
         return true;
@@ -104,8 +104,9 @@ clilog::LogInputForm::LogInputForm(clilog::LogStore& log_store)
 ftxui::Element clilog::LogInputForm::OnRender() {
     using namespace ftxui;
 
-    utc_date_ = clilog::timeutils::get_utc_date();
-    utc_time_ = clilog::timeutils::get_utc_time();
+    auto now = clilog::timeutils::get_utc_time();
+    utc_date_ = std::format("{:04}-{:02}-{:02}", now.year, now.month, now.day);
+    utc_time_ = std::format("{:02}:{:02}:{:02}", now.hour, now.minute, now.second);
 
     return 
         vbox({
