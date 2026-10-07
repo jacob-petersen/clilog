@@ -9,6 +9,8 @@
 
 #pragma once
 
+#include <optional>
+
 #include "clilog/log_entry.hpp"
 #include "clilog/log_store.hpp"
 
@@ -36,6 +38,24 @@ class LoggingCore {
      */
     void process_log_entry_draft(clilog::LogEntryDraft log_entry_draft);
 
+    /**
+     * @brief Filters the passed character, returning it back if it is allowed. 
+     * Valid characters are `A-Z`, `0-9`, `-`, `.`.
+     * `a-z` are also valid but will be capitalized before being returned. 
+     * @param c the typed character.
+     * @returns `std::optional<char>`, which contains the char to be added, or `std::nullopt`
+     * if the char was invalid.
+     */
+    std::optional<char> filter_callsign_keystroke(char c);
+
+    /**
+     * @brief Filters the passed character, returning it back if it is allowed.
+     * Valid characters are `0-9` and `.`.
+     * @param c the typed character.
+     * @returns `std::optional<char>`, which contains the char to be added, or `std::nullopt`
+     * if the char was invalid.
+     */
+    std::optional<char> filter_freq_keystroke(char c);
 };
 
 }
