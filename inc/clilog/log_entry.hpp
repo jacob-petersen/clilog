@@ -1,9 +1,9 @@
-/*
-    Keep it simple, stupid.
-
-    LogEntry is the main data structure that log entry data is stored in.
-
-*/
+/**
+ * 
+ * @brief Contains data structures relating to log objects, including `clilog::LogEntry`.
+ * 
+ * Keep it simple, stupid.
+ */
 
 #pragma once
 
@@ -11,6 +11,10 @@
 
 namespace clilog {
 
+/*
+    @brief Container struct for minimum information required for a log entry 
+    (`comment` can remain blank). 
+*/
 struct LogEntry {
     std::string utc_date;
     std::string utc_time;

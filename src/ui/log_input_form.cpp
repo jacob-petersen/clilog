@@ -8,9 +8,8 @@
 #include "clilog/ui/log_input_form.hpp"
 #include "clilog/timeutils.hpp"
 
-// Need to pass reference immediately so it doesn't get copied
 clilog::LogInputForm::LogInputForm(clilog::LogStore& log_store)
-    : log_store_(log_store)
+    : log_store_(log_store) // Need to pass reference immediately so it doesn't get copied
 {
     using namespace ftxui;
     

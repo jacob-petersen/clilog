@@ -1,12 +1,13 @@
-/*
-    Keep it simple, stupid.
-
-    NOTHING IN THIS FILE SHOULD EVER BE USED DIRECTLY IN MAIN!
-    Build the screen you want this menu on first, then use that.
-
-    This header defines clilog::LogInputForm, which is the log data entry form that is used in the main logging screen.
-
-*/
+/**
+ * @file
+ * @brief This header defines clilog::LogInputForm, which is the log data entry form that is used in the main logging screen.
+ * @author Jacob Petersen
+ * 
+ * NOTHING IN THIS FILE SHOULD EVER BE USED DIRECTLY IN MAIN!
+ * Build the screen you want this menu on first, then use that.
+ * 
+ * Keep it simple, stupid.
+ */
 
 #pragma once
 
@@ -18,6 +19,9 @@
 
 namespace clilog {
 
+/*
+    @brief UI component that contains the logging input fields. Extends `ftxui::ComponentBase`.
+*/
 class LogInputForm : public ftxui::ComponentBase {
 
     private:
@@ -56,6 +60,7 @@ class LogInputForm : public ftxui::ComponentBase {
     public:
     LogInputForm(clilog::LogStore& log_store);
     ftxui::Element OnRender() override;
+
 };
 
 }

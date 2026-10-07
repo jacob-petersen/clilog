@@ -1,17 +1,22 @@
-/*
-    Keep it simple, stupid.
-
-    This header defines the LoggingScreen, which is the fully rendered screen that contains the logging input
-    form (log_input_form_) and the logging history table (log_history_table)  
-
-*/
+/**
+ * @brief This header defines the LoggingScreen, which is the fully rendered screen that contains 
+ * the logging input form (log_input_form_) and the logging history table (log_history_table)
+ * @author Jacob Petersen
+ * 
+ * 
+ * Keep it simple, stupid.
+ */
 
 #pragma once
 
 #include "ftxui/component/component.hpp"
 
 namespace clilog {
-   
+
+/*
+    @brief UI container for the entire logging screen (header, logging input forms,
+    logging history table). Extends `ftxui::ComponentBase`.
+*/
 class LoggingScreen : public ftxui::ComponentBase {
 
     private:

@@ -1,6 +1,11 @@
-/*
-    Keep it simple, stupid.
-*/
+/**
+ * 
+ * @brief This header defines the LogStore object, which handles everything related to storing 
+ * and retrieving logs.
+ * @author Jacob Petersen
+ * 
+ * Keep it simple, stupid.
+ */
 
 #pragma once
 
@@ -10,6 +15,9 @@
 
 namespace clilog {
 
+/*
+    @brief The object that stores and retrieves logs. Handles database persistence under the hood. 
+*/
 class LogStore {
 
     private:
@@ -17,8 +25,10 @@ class LogStore {
 
     public:
     void add_log_entry(clilog::LogEntry log_entry);
-
+    
+    // @brief DEBUG! Do not use in production code!
     std::vector<clilog::LogEntry>& DEBUG_dump_entire_buffer();
+    // @brief DEBUG! Do not use in production code!
     void DEBUG_generate_sample_log_entries(int n);
 
 };

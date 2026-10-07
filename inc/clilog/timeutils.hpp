@@ -1,6 +1,10 @@
-/*
-    Keep it simple, stupid.
-*/
+/**
+ * 
+ * @brief UTC time helper functions for clilog.
+ * @author Jacob Petersen
+ * 
+ * Keep it simple, stupid.
+ */
 
 #pragma once
 
@@ -8,19 +12,21 @@
 
 namespace clilog::timeutils {
 
-    struct UTCTimePoint {
-        int year;
-        int month;
-        int day;
-        int hour;
-        int minute;
-        int second;
-    };
+/**
+ * @brief Container containing a point in time to second precision.
+ */
+struct UTCTimePoint {
+    int year;
+    int month;
+    int day;
+    int hour;
+    int minute;
+    int second;
+};
 
-    clilog::timeutils::UTCTimePoint get_utc_time();
-
-    // std::string get_utc_date_string();
-    // std::string get_utc_time_string();
-    // std::string get_utc_datetime_string();
+/**
+ * @brief Returns a `clilog::UTCTimePoint` with the current UTC time.
+ */
+clilog::timeutils::UTCTimePoint get_utc_time();
     
 }
